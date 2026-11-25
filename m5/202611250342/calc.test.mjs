@@ -1,0 +1,29 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { add } from './calc.mjs';
+
+test('add', () => {
+  assert.equal(add(2, 3), 5);
+  assert.equal(add(-2, -3), -5);
+  assert.equal(add(0, 0), 0);
+});
+
+test('mul', async () => {
+  const { mul } = await import('./calc.mjs');
+  assert.equal(mul(2, 3), 6);
+  assert.equal(mul(-2, 3), -6);
+  assert.equal(mul(0, 7), 0);
+});
+
+test('sub', async () => {
+  const { sub } = await import('./calc.mjs');
+  assert.equal(sub(5, 3), 2);
+  assert.equal(sub(-2, 3), -5);
+  assert.equal(sub(0, 0), 0);
+  assert.equal(sub(3, 5), -2);
+});
+
+test('export set', async () => {
+  const mod = await import('./calc.mjs');
+  assert.deepEqual(Object.keys(mod).sort(), ['add', 'mul', 'sub']);
+});
