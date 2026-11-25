@@ -22,3 +22,8 @@ test('sub', async () => {
   assert.equal(sub(0, 0), 0);
   assert.equal(sub(3, 5), -2);
 });
+
+test('export set', async () => {
+  const mod = await import('./calc.mjs');
+  assert.deepEqual(Object.keys(mod).sort(), ['add', 'mul', 'sub']);
+});
