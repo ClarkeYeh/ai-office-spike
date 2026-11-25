@@ -1,4 +1,4 @@
 export function add(a, b) { return a + b; }
 // ops:begin
-// (no ops yet)
+export function mul(a, b) { return a * b; }
 // ops:end
